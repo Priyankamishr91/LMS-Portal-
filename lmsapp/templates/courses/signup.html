@@ -1,0 +1,22 @@
+{% extends 'courses/base.html' %}
+{% load course_custom_tags %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #6e8efb, #a777e3); border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 80px;">
+    <h1 style="font-size: 2.5rem; text-align: center; color: white; margin-bottom: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Sign Up</h1>
+    <div style="display: flex; justify-content: center;">
+        <div style="width: 100%; max-width: 400px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" style="background-color: #007bff; border: none; color: white; padding: 15px; font-size: 1.1rem; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 20px; transition: background-color 0.3s;">
+                    Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

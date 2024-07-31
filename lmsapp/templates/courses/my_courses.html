@@ -1,0 +1,38 @@
+{% extends 'courses/base.html' %}
+{% load course_custom_tags %}
+{%block title%}Sign up{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <p class="display-6">My courses</p>
+    <hr><br>
+    <div class="row">
+        {% for uc in user_courses %}
+            <div class="col-md-4 mb-4"> <!-- Adjust column size and margin as needed -->
+                <div class="card" style="width: 100%;"> <!-- Make card take full column width -->
+                    <img src="{{uc.course.thumbnail.url}}" class="card-img-top" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{uc.course.name}}</h5>
+                      
+                    </div>
+                    
+                    <div class="card-footer p-0">
+
+                        <div class="row no-gutters">
+                            
+                            <div class="col border-right">
+                                <a href="/course/{{uc.course.slug}}" class="btn btn-light btn-block">Start Course</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

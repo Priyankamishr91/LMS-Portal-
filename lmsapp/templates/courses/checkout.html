@@ -1,0 +1,77 @@
+{% extends 'courses/base.html' %}
+{% load course_custom_tags %}
+{%block title%}Checkout{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col mr-auto">
+            <div class="card ml-auto" style="width: 18rem;">
+                <img src="{{course.thumbnail.url}}" class="card-img-top" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{course.name}}</h5>
+                  
+                  <p class="card-text" m-0 p-0>
+                    Save {{course.discount}}%
+                    <br>
+                    <span class="price">
+                        <del>{{course.price|rupee}}</del>
+                    &nbsp;
+                
+                    <span>{% cal_sellprice course.price course.discount as value %} {{value|rupee}}</span>
+                    </span>
+                  </p>  
+                </div>
+            </div>
+            </div>
+            <div class="col">
+                <div>
+                    <p class="display-5">{{course.name}}</p>
+                    <hr>
+                    <p class="display-5">Payable Amount : <b>{% cal_sellprice course.price course.discount as value %} {{value|rupee}}</b></p>
+                    <a class="btn btn-light border" href="?action=create_payment">Continue to Payment</a>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+{% if order is not None %}
+    
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    var options = {
+        "key": "rzp_test_w4RMmjXdSI8P59", // Enter the Key ID generated from the Dashboard
+        "name": "Learno Geek", //your business name
+        "description": "Payment for {{course.name}}",
+        "image": "data:image/jpeg;base64,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",
+        "order_id": "{{order.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "callback_url": "http://localhost:8000/verify_payment",
+        "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+            "name": "{{user.first_name}}", //your customer's name
+            "email": "{{user.email}}",
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+var rzp1 = new Razorpay(options);
+rzp1.open();
+
+</script>
+{% endif %}
+
+{% if error is not None %}
+<script>
+    window.onload = ()=>{
+        alert("{{error}}")
+    }
+</script>
+{% endif %}
+
+
+{% endblock %}
