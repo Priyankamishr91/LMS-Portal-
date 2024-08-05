@@ -120,8 +120,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR
 
-KEY_SECRET = "UwfiRQqNSYJNUiW45543zRjf"
-KEY_ID = "rzp_test_w4RMmjXdSI8P59"
+KEY_SECRET = ""
+KEY_ID = ""
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
